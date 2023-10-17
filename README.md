@@ -3,4 +3,5 @@
  - GREEN Highlight for traffic sent to port 8080
  - YELLO Highlight for traffic sent to port 8081
  
+Download at release page [HERE](https://github.com/catmandx/burp-highlight/releases) 
 ![](example.png "Example setup")
