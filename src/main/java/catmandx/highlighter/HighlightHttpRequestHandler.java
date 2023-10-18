@@ -31,23 +31,17 @@ class HighlightHttpRequestHandler implements ProxyRequestHandler {
     @Override
     public ProxyRequestReceivedAction handleRequestReceived(InterceptedRequest interceptedRequest) {
         String listener = interceptedRequest.listenerInterface().toString();
-        //Drop all post requests
         Annotations annotations = interceptedRequest.annotations();
-
-        
         if(listener.contains("8080")){
             annotations = annotations.withHighlightColor(HighlightColor.GREEN);
         }else if (listener.contains("8081")){
             annotations = annotations.withHighlightColor(HighlightColor.YELLOW);
         }
-
-        //Intercept all other requests
         return ProxyRequestReceivedAction.continueWith(interceptedRequest, annotations);
     }
 
     @Override
     public ProxyRequestToBeSentAction handleRequestToBeSent(InterceptedRequest interceptedRequest) {
-        //Do nothing with the user modified request, continue as normal.
         Annotations annotations = interceptedRequest.annotations();
         String listener = interceptedRequest.listenerInterface();
         if(listener.contains("8080")){
